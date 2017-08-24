@@ -1,28 +1,38 @@
 /**
  * Created by BALASUBRAMANIAM on 24/08/2017.
  */
-function Person(name,address)
+//Ecma standard
+
+class Person
 {
-    this.Name=name;
-    this.Address=address;
+    constructor(name,address)
+    {
+        this.Name=name;
+        this.Address=address
+    }
 }
 
-function Member(name,address,type)
+class Member extends Person
 {
-    Person.call(name,address);
-    this.Type=type;
+
+    constructor(name,address,type)
+    {
+        super(name,address);
+
+        this.Type=type;
+    }
+
 }
-Member.prototype=new Person()
-function President(name,address,type, resp)
-{
-    Member.call(name,address,type);
-    this.Responsibility=resp;
+
+class President extends Member{
+    constructor(name,address,type,resp)
+    {
+        super(name,address,type);
+
+        this.Responsibility=resp;
+    }
 }
 
 
-President.prototype=new Member()
-
-obj= new President("Sanjay","Bangalore","Gold","Admin")
-console.log(obj)
-
-
+var object =new President('Sanjay','Chennai','gold','Admin');
+console.log(object);
