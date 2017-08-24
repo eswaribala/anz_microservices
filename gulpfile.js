@@ -2,7 +2,7 @@
  * Created by BALASUBRAMANIAM on 24/08/2017.
  */
 var gulp = require('gulp');
-
+var webserver = require('gulp-webserver');
 var paths = {
     src: 'src/**/*',
     srcHTML: 'src/**/*.html',
@@ -35,3 +35,10 @@ gulp.task('js', function () {
 });
 
 gulp.task('copy', ['html', 'css', 'js']);
+gulp.task('serve', ['copy'], function () {
+    return gulp.src(paths.tmp)
+        .pipe(webserver({
+            port: 3000,
+            livereload: true
+        }));
+});
