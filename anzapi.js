@@ -3,8 +3,14 @@
  */
 var express        =         require("express");
 var bodyParser     =         require("body-parser");
+var mysql      = require('mysql');
 var app            =         express();
-
+var connection = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'root',
+    password : 'vignesh',
+    database : 'anz_financedb'
+});
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -56,8 +62,21 @@ app.post('/reg',function(req,res){
     var Address=req.body.address;
     var MobileNo=req.body.mobileNo
     console.log("Name = "+Name+", Mobile No is "+MobileNo);
+
+    connection.connect();
+
+    var insertRecord = 'INSERT INTO customer(Customer_Id,Name,Address,MobileNo) VALUE(?,?,?,?)';
+//Incsert a record.
+    connection.query(insertRecord,[Id,Name,Address,MobileNo], function(err,res){
+        if(err) throw err;
+        else {
+            console.log('A new customer has been added.');
+        }
+    });
+
+    connection.end();
     //console.log(req.body);
-    res.send("received "+Name+MobileNo);
+    res.send("Data added to mysql db");
 
 
 });
