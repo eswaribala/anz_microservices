@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+<context:annotation-config></context:annotation-config>
+<context:component-scan base-package="com.niit"></context:component-scan>
+<bean id="bookingObj" class="com.niit.travel.implementations.FlightBooking">
+<property name="bookingDate" ref="date"></property>
+
+</bean>
+<bean id="date" class="java.util.Date">
+<constructor-arg index="0" value="117"></constructor-arg>
+<constructor-arg index="1" value="5"></constructor-arg>
+<constructor-arg index="2" value="15"></constructor-arg>
+</bean>
+
+<bean id="object1" class="com.niit.model.Airport" >
+<property name="airportCode" value="DEL"></property>
+<property name="airportName" value="Indira Gandhi International Airport"></property>
+</bean>
+<bean id="city1" class="com.niit.model.City">
+<property name="cityCode" value="TRY"></property>
+<property name="cityName" value="Trichy"></property>
+</bean>
+<bean id="city2" class="com.niit.model.City">
+<property name="cityCode" value="CHN"></property>
+<property name="cityName" value="Chennai"></property>
+</bean>
+<bean id="object2" class="com.niit.model.Airport" >
+<property name="airportCode" value="MAA"></property>
+<property name="airportName" value="Kamraj Domestic Terminal"></property>
+</bean>
+<bean id="countryObj1" class="com.niit.model.Country" >
+<constructor-arg index="0" value="IN">
+</constructor-arg>
+<constructor-arg index="1"  value="India">
+</constructor-arg>
+<!-- 
+<property name="stateList">
+<list>
+<ref bean="state1"/>
+<ref bean="state2"/>
+</list>
+</property>
+-->
+</bean>
+<bean id="countryObj2" class="com.niit.model.Country" >
+<constructor-arg index="0" value="SL">
+</constructor-arg>
+<constructor-arg index="1"  value="Sri Lanka">
+</constructor-arg>
+
+</bean>
+<!--  
+<bean id="state1"  class="com.niit.model.State">
+<property name="stateCode" value="TN"></property>
+<property name="stateName" value="TamilNadu"></property>
+<property name="country" ref="countryObj"></property> 
+</bean>
+<bean id="state2"  class="com.niit.model.State">
+<property name="stateCode" value="KN"></property>
+<property name="stateName" value="Karnataka"></property>
+  <property name="country" ref="countryObj"></property>
+</bean>
+-->
+</beans>
