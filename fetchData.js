@@ -27,19 +27,21 @@ module.exports.fetchCustomers=function()
         });
 
     CustomerModel = mongoose.model('customer',schema);
-   data= CustomerModel.find({},function(err,res)
-    {
-        console.log("reaching...");
-        console.log(err);
-        //console.log(res);
-        return (res);
-    })
+    data= CustomerModel.find({}).exec(function(err,response){
+
+        return(response);
+    });
+
+
     //console.log(data);
 return data;
 }
 
 result=module.exports.fetchCustomers();
-
+result.then(function(res)
+{
+   console.log(res);
+});
 
 
 /*
