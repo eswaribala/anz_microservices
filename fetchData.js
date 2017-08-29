@@ -2,31 +2,54 @@
  * Created by BALASUBRAMANIAM on 29/08/2017.
  */
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/accountsdb');
+var config=require('./config')
+mongoose.connect(config.url,config.mongodb,
+    config.mongoport);
+//mongoose.connect('mongodb://localhost:27017/accountsdb');
 
 var db = mongoose.connection;
 
-db.once('open',function()
+module.exports.fetchCustomers=function()
 {
-    console.log("connected.....");
-});
-
-var schema =new mongoose.Schema(
+    db.once('open',function()
     {
-        id:Number,
-        name:String,
-        startDate:Date,
-        balance:Number,
-        type:String
-
+        console.log("connected.....");
     });
 
-CustomerModel = mongoose.model('customer',schema);
+    var schema =new mongoose.Schema(
+        {
+            id:Number,
+            name:String,
+            startDate:Date,
+            balance:Number,
+            type:String
+
+        });
+
+    CustomerModel = mongoose.model('customer',schema);
+   data= CustomerModel.find({},function(err,res)
+    {
+        console.log("reaching...");
+        console.log(err);
+        //console.log(res);
+        return (res);
+    })
+    //console.log(data);
+return data;
+}
+
+result=module.exports.fetchCustomers();
+
+
+
+/*
+
+/*
 var customerData = new CustomerModel ({
-    id:435679,
-    name:"Anoop",
+    id:56789,
+    name:"Samarth",
     startDate:new Date(),
-    balance:435345,
+    balance:10000,
     type:"savings"
 });
 
@@ -35,10 +58,5 @@ customerData.save(function(err, customerData) {
     console.log("saving......");
 });
 
-CustomerModel.find({},function(err,res)
-{
-    console.log("reaching...");
-    console.log(err);
-    console.log(res);
-})
 
+ */
