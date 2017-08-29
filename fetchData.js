@@ -8,7 +8,17 @@ mongoose.connect(config.url,config.mongodb,
 //mongoose.connect('mongodb://localhost:27017/accountsdb');
 
 var db = mongoose.connection;
+var schema =new mongoose.Schema(
+    {
+        id:Number,
+        name:String,
+        startDate:Date,
+        balance:Number,
+        type:String
 
+    });
+
+CustomerModel = mongoose.model('customer',schema);
 module.exports.fetchCustomers=function()
 {
     db.once('open',function()
@@ -16,17 +26,7 @@ module.exports.fetchCustomers=function()
         console.log("connected.....");
     });
 
-    var schema =new mongoose.Schema(
-        {
-            id:Number,
-            name:String,
-            startDate:Date,
-            balance:Number,
-            type:String
 
-        });
-
-    CustomerModel = mongoose.model('customer',schema);
     data= CustomerModel.find({}).exec(function(err,response){
 
         return(response);

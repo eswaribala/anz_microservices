@@ -5,6 +5,9 @@ var express        =         require("express");
 var bodyParser     =         require("body-parser");
 var mysql      = require('mysql');
 var app            =         express();
+
+var dbFile=require('./models/fetchData');
+
 var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
@@ -80,6 +83,56 @@ app.post('/reg',function(req,res){
 
 
 });
+
+
+app.get("/getCustomers", function(request, response) {
+// Website you wish to allow to connect
+    response.setHeader('Access-Control-Allow-Origin', '*');
+
+    // Request methods you wish to allow
+    response.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+    // Request headers you wish to allow
+    response.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    response.setHeader('Access-Control-Allow-Credentials', true);
+    connection.query("select * from customer",function(err,rows){
+        //connection.release();
+        if(!err) {
+            response.json(rows);
+        }
+    });
+
+
+});
+
+app.get("/getmdbCustomers", function(request, response) {
+// Website you wish to allow to connect
+    response.setHeader('Access-Control-Allow-Origin', '*');
+
+    // Request methods you wish to allow
+    response.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+    // Request headers you wish to allow
+    response.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    response.setHeader('Access-Control-Allow-Credentials', true);
+
+    dbFile.fetchCustomers().then(function(info)
+    {
+        response.send(info);
+    })
+
+});
+
+
+
+
+
 
 app.listen(3000,function(){
     console.log("Started on PORT 3000");
