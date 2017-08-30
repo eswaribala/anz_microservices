@@ -1,0 +1,31 @@
+section
+{
+	width:20%;
+	border:2px solid red;
+	margin-left: 25%;
+}
+
+.regForm
+{
+	
+	width:80%;
+	
+}
+label
+{
+	width:80%;
+	margin-bottom: 2%;
+	margin-left: 15%;
+}
+input
+{
+	width:80%;
+	margin-bottom: 2%;
+	margin-left: 15%;
+}
+textarea
+{
+	width:80%;
+	margin-bottom: 2%;
+	margin-left: 15%;
+}
