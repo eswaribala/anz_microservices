@@ -2,11 +2,13 @@ package com.anz.models;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-import org.springmodules.validation.bean.conf.loader.annotation.handler.Email;
+import org.hibernate.validator.constraints.Email;
 import org.springmodules.validation.bean.conf.loader.annotation.handler.NotBlank;
-import org.springmodules.validation.bean.conf.loader.annotation.handler.NotNull;
-import org.springmodules.validation.bean.conf.loader.annotation.handler.Size;
+
+
 @Entity
 @Table(name="ANZ_Customer")
 public class Customer {
