@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>MongoDB/Spring Boot tutorial from tests4geeks.com</title>
+        <title>MongoDB/Spring Boot</title>
         <style>
             table
             {
@@ -38,31 +38,34 @@
         <table>
             <thead>
                 <tr>
-                    <th>Make</th>
-                    <th>Model</th>
-                    <th>Description</th>
-                    <th>Year</th>
+                    <th>Loan No</th>
+                    <th>Loan Type</th>
+                    <th>Start Date</th>
+                    <th>Loan Amount</th>
+                     <th>Interest Rate</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="car : ${carList}">
-                    <td th:text="${car.make}"></td>
-                    <td th:text="${car.model}"></td>
-                    <td th:text="${car.description}"></td>
-                    <td th:text="${car.year}"></td>
+                <tr th:each="loan : ${loanList}">
+                    <td th:text="${loan.loanNo}"></td>
+                    <td th:text="${loan.loanType}"></td>
+                    <td th:text="${loan.startDate}"></td>
+                    <td th:text="${loan.loanAmount}"></td>
+                     <td th:text="${loan.interestRate}"></td>
                 </tr>
             </tbody>
         </table>
         <br />
-        <h2>Add Car</h2>
-        <form action="/addCar" method="POST">
-           <input type="text" id="make" name="make" placeholder="make"/><br />
-           <input type="text" id="model" name="model" placeholder="model"/><br />
-           <input type="text" id="year" name="year" placeholder="year"/><br />
-           <textarea rows="5" cols="70" id="description" name="description" placeholder="description"/><br />
+        <h2>Add Loan</h2>
+        <form action="/addLoan" method="POST">
+           <input type="text" id="loanNo" name="loanNo" placeholder="Loan No"/><br />
+           <input type="text" id="loanType" name="loanType" placeholder="Loan Type"/><br />
+           <input type="text" id="startDate" name="startDate" placeholder="Start Date"/><br />
+        <input type="text" id="loanAmount" name="loanAmount" placeholder="Start Date"/><br />
+         <input type="text" id="interestRate" name="interestRate" placeholder="Start Date"/><br />
             <input type="submit" />
         </form>
-        <h2>Search for cars</h2>
+        <h2>Search for Loan</h2>
         <form action="/search" method="POST">
             <input type="text" name="search" id="search" th:value="${search}" />
             <input type="submit" value="Search" />
