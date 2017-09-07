@@ -1,0 +1,26 @@
+serviceModule.service('viewstateService',['$http',function($http)//outer function
+{
+    var viewStateInfo=function(obj)//inner function
+    {
+        return $http(
+            {
+                method:'GET',
+                datatype:"json",
+                params:obj,//parameters that carries your data(object that we created we are sending it to server site)
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                url:'http://localhost:7070/GoTrip/CityServlet'
+                //url:'http://localhost:3000/viewcities'
+            }
+        ).then(function(response)
+        {
+            return response;//response will be returned to http and http will be returned to getstatelist
+
+        })
+    }
+    //CLOSURE single ton object returned from service(return data comes from getstatelist to service)
+    return{
+        viewstateServiceObj:viewStateInfo
+    }
+}])
